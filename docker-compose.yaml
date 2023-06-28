@@ -12,8 +12,10 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/ubuntu-c/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/ubuntu-c/root:/root
+    #  - ${ANSIBLE_HOME}/ubuntu-c/ansible:/home/ansible
+     - ubuntu-c_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/ubuntu-c/root:/root
+     - ubuntu-c_root:/root
     networks:
      - diveinto.io
 
@@ -28,8 +30,10 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/ubuntu1/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/ubuntu1/root:/root
+    #  - ${ANSIBLE_HOME}/ubuntu1/ansible:/home/ansible
+     - ubuntu-1_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/ubuntu1/root:/root
+     - ubuntu-1_root:/root
     networks:
      - diveinto.io
 
@@ -44,8 +48,10 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/ubuntu2/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/ubuntu2/root:/root
+    #  - ${ANSIBLE_HOME}/ubuntu2/ansible:/home/ansible
+     - ubuntu-2_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/ubuntu2/root:/root
+     - ubuntu-2_root:/root
     networks:
      - diveinto.io
 
@@ -60,26 +66,30 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/ubuntu3/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/ubuntu3/root:/root
+    #  - ${ANSIBLE_HOME}/ubuntu3/ansible:/home/ansible
+     - ubuntu-3_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/ubuntu3/root:/root
+     - ubuntu-3_root:/root
     networks:
      - diveinto.io
 
   centos1:
     hostname: centos1
     container_name: centos1
-    image: spurin/diveintoansible:centos
-    #image: spurin/diveintoansible:centos-sshd-2222
-    ports: 
-     - ${CENTOS1_PORT_SSHD}:22
-     #- ${CENTOS1_PORT_SSHD}:2222
+    # image: spurin/diveintoansible:centos
+    image: spurin/diveintoansible:centos-sshd-2222
+    ports:
+    #  - ${CENTOS1_PORT_SSHD}:22
+     - ${CENTOS1_PORT_SSHD}:2222
      - ${CENTOS1_PORT_TTYD}:7681
     privileged: true
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/centos1/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/centos1/root:/root
+    #  - ${ANSIBLE_HOME}/centos1/ansible:/home/ansible
+     - centos-1_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/centos1/root:/root
+     - centos-1_root:/root
     networks:
      - diveinto.io
 
@@ -94,8 +104,10 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/centos2/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/centos2/root:/root
+    #  - ${ANSIBLE_HOME}/centos2/ansible:/home/ansible
+     - centos-2_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/centos2/root:/root
+     - centos-2_root:/root
     networks:
      - diveinto.io
 
@@ -110,8 +122,10 @@ services:
     volumes:
      - ${CONFIG}:/config
      - ${ANSIBLE_HOME}/shared:/shared
-     - ${ANSIBLE_HOME}/centos3/ansible:/home/ansible
-     - ${ANSIBLE_HOME}/centos3/root:/root
+    #  - ${ANSIBLE_HOME}/centos3/ansible:/home/ansible
+     - centos-3_ansible-home:/home/ansible
+    #  - ${ANSIBLE_HOME}/centos3/root:/root
+     - centos-3_root:/root
     networks:
      - diveinto.io
 
@@ -162,3 +176,19 @@ networks:
     #
     #driver_opts:
     #  com.docker.network.bridge.name: "diveinto.io"
+
+volumes:
+  ubuntu-c_ansible-home:
+  ubuntu-1_ansible-home:
+  ubuntu-2_ansible-home:
+  ubuntu-3_ansible-home:
+  centos-1_ansible-home:
+  centos-2_ansible-home:
+  centos-3_ansible-home:
+  ubuntu-c_root:
+  ubuntu-1_root:
+  ubuntu-2_root:
+  ubuntu-3_root:
+  centos-1_root:
+  centos-2_root:
+  centos-3_root:
